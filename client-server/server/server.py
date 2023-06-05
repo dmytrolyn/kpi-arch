@@ -13,12 +13,12 @@ class PenManager:
 
 
 class RequestHandler(BaseHTTPRequestHandler):
-    def GET(self):
+    def do_GET(self):
         self.send_response(200)
         self.end_headers()
         self.wfile.write(json.dumps(PenManager.get_all_pens()).encode())
 
-    def POST(self):
+    def do_POST(self):
         content_length = int(self.headers['Content-Length'])
         text_input = self.rfile.read(content_length).decode()
         new_pen = json.loads(text_input)['pen']
