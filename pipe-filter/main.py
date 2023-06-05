@@ -1,6 +1,6 @@
 from filters import reverse, uppercase
 
-def run_pipe_filter(input_data):
+def run_pipe(input_data):
     result = uppercase(input_data)
     result = hyphen(result)
 
@@ -8,5 +8,5 @@ def run_pipe_filter(input_data):
 
 if __name__ == '__main__':
     input_data = 'Hello'
-    result = run_pipe_filter(input_data)
+    result = run_pipe(input_data)
     print(result)
