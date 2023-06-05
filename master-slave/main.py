@@ -9,7 +9,7 @@ def sum_worker(input_queue, output_queue):
         output_queue.put(incremented)
 
 
-def run_master_slave(numbers):
+def run(numbers):
     input_queue = multiprocessing.Queue()
     output_queue = multiprocessing.Queue()
 
@@ -41,5 +41,5 @@ def run_master_slave(numbers):
 
 if __name__ == '__main__':
     numbers = [1, 2, 3, 4, 5, 6, 7]
-    results = run_master_slave(numbers)
+    results = run(numbers)
     print(results)
