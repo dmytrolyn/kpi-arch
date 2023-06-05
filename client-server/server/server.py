@@ -28,7 +28,7 @@ class RequestHandler(BaseHTTPRequestHandler):
         self.wfile.write('Pen created')
 
 
-def run():
+def setup():
     PORT = 3001
     server_address = ('0.0.0.0', PORT)
     httpd = HTTPServer(server_address, RequestHandler)
