@@ -15,8 +15,8 @@ def main():
     event_bus.subscribe(EVENT_CREATE_USER, handle_user_created)
     event_bus.subscribe(EVENT_CREATE_PRODUCT, handle_product_created)
 
-    event_bus.publish(EVENT_USER_CREATED, {'name': 'Dmytro'})
-    event_bus.publish(EVENT_ORDER_PLACED, {'id': '3738'})
+    event_bus.notify(EVENT_USER_CREATED, {'name': 'Dmytro'})
+    event_bus.notify(EVENT_ORDER_PLACED, {'id': '3738'})
 
 if __name__ == "__main__":
     main()

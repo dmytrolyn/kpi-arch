@@ -15,7 +15,7 @@ class EventBus:
                     callbacks.remove(callback)
                     return
 
-    def publish(self, event, data=None):
+    def notify(self, event, data=None):
         if event in self.subscribers:
             for callback in self.subscribers[event]:
                 callback(data)
