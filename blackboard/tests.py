@@ -2,8 +2,8 @@ import unittest
 from unittest.mock import patch
 from main import Blackboard, TextExtractor, Analyzer, ResultViewer, Controller
 
-class TestBlackboardPattern(unittest.TestCase):
-    def test_process_social_media_data(self):
+class TestHandler(unittest.TestCase):
+    def test_process_data(self):
         blackboard = Blackboard()
         controller = Controller(blackboard)
 
@@ -30,27 +30,32 @@ class TestBlackboardPattern(unittest.TestCase):
 
         self.assertEqual(blackboard.get_data('data'), data)
 
-    def test_sentiment_analyzer(self):
+    def test_analyzer(self):
         blackboard = Blackboard()
         analyzer = Analyzer(blackboard)
 
-        blackboard.set_data('data', "Lorem impsum dolor sit amet!")
+        text_to_analyze = "Lorem impsum dolor sit amet!"
+
+        blackboard.set_data('data', text_to_analyze)
 
         analyzer.analyze()
 
         self.assertIsNotNone(blackboard.get_data('analyzed_data'))
+        self.assertEqual(blackboard.get_data('analyzed_data'), len(text_to_analyze))
 
     def test_result_viewer(self):
         blackboard = Blackboard()
         result_viewer = ResultViewer(blackboard)
 
-        blackboard.set_data('data', "Lorem impsum dolor sit amet!")
-        blackboard.set_data('analyzed_data', 0.5)
+        text_to_analyze = "Lorem impsum dolor sit amet!"
+
+        blackboard.set_data('data', text_to_analyze)
+        blackboard.set_data('analyzed_data', len(text_to_analyze))
 
         with patch('builtins.print') as mock_print:
             result_viewer.display_result()
 
-            mock_print.assert_called_with("Analyzed data:", 0.5)
+            mock_print.assert_called_with("Analyzed data:", len(text_to_analyze))
 
 if __name__ == "__main__":
     unittest.main()

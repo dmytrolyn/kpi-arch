@@ -13,7 +13,6 @@ class TextExtractor:
         self.blackboard = blackboard
 
     def extract_text(self, data):
-        text = data
         self.blackboard.set_data('data', data)
 
 
@@ -28,7 +27,7 @@ class Analyzer:
             self.blackboard.set_data('analyzed_data', analyzed_data)
 
     def perform_analysis(self, text):
-        return 0.5
+        return len(text)
 
 
 
@@ -39,6 +38,7 @@ class ResultViewer:
     def display_result(self):
         data = self.blackboard.get_data('data')
         analyzed_data = self.blackboard.get_data('analyzed_data')
+
         if data and analyzed_data:
             print("Data:", data)
             print("Analyzed data:", analyzed_data)
@@ -71,6 +71,6 @@ if __name__ == "__main__":
     controller.add_knowledge_source(text_extractor)
     controller.add_knowledge_source(analyzer)
 
-    data = "I'm feeling great today! It's a beautiful sunny day."
+    data = "Lorem ipsum dolor sit amet"
 
     controller.process_data(data)
